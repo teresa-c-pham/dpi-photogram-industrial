@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   root "photos#index"
 
   # Define path routes for User
-
+  get "/:username" => "photos#user", as: :specific_user
+  # get "/:username/feed" => "photos#feed", as: :user_feed
 end
