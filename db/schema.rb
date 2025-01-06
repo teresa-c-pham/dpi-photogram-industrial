@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_06_195333) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_06_195908) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -23,6 +23,16 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_06_195333) do
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_comments_on_author_id"
     t.index ["photo_id"], name: "index_comments_on_photo_id"
+  end
+
+  create_table "followrequests", force: :cascade do |t|
+    t.bigint "recipient_id", null: false
+    t.bigint "sender_id", null: false
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipient_id"], name: "index_followrequests_on_recipient_id"
+    t.index ["sender_id"], name: "index_followrequests_on_sender_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -64,6 +74,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_06_195333) do
 
   add_foreign_key "comments", "photos"
   add_foreign_key "comments", "users", column: "author_id"
+  add_foreign_key "followrequests", "users", column: "recipient_id"
+  add_foreign_key "followrequests", "users", column: "sender_id"
   add_foreign_key "likes", "photos"
   add_foreign_key "likes", "users", column: "fan_id"
   add_foreign_key "photos", "users", column: "owner_id"
