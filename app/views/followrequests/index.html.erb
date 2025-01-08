@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Followrequests</h1>
+
+<div id="followrequests">
+  <% @followrequests.each do |followrequest| %>
+    <%= render followrequest %>
+    <p>
+      <%= link_to "Show this followrequest", followrequest %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New followrequest", new_followrequest_path %>

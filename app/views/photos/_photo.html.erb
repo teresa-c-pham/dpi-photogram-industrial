@@ -1,0 +1,64 @@
+<div id="<%= dom_id photo %>" class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <div class="d-grid">
+          <%= link_to "#{photo.owner_id}", photo %>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-grid">
+          <%= link_to edit_photo_path(photo), class: "btn btn-outline-secondary" do %>
+            <i class="fa-regular fa-pen-to-square"></i>
+          <% end %>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-grid">
+          <%= link_to photo, data: { turbo_method: :delete }, class: "btn btn-outline-secondary" do %>
+            <i class="fa-regular fa-trash-can"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <img src="<%= photo.image %>" alt="" style="width: 100%;">
+      </div>
+    </div>
+    <div class="row">
+        <p><% if photo.likes_count > 1 %>
+          <%= photo.likes_count %> likes
+        <% else %>
+          <p><%= photo.likes_count %> like</p>
+        <% end %>
+        <%= link_to photo, class: "btn btn-outline-secondary" do %>
+            <i class="fa-regular fa-heart"></i> Like
+          <% end %>
+        </p>
+    </div>
+  </div>
+
+  <p>
+    <strong>Comments count:</strong>
+    <%= photo.comments_count %>
+  </p>
+
+  <p>
+    <strong>Likes count:</strong>
+    <%= photo.likes_count %>
+  </p>
+
+  <p>
+    <strong>Caption:</strong>
+    <%= photo.caption %>
+  </p>
+
+  <p>
+    <strong>Owner:</strong>
+    <%= photo.owner_id %>
+  </p>
+
+</div>

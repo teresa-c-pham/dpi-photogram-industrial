@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>feed</h1>
+<h3>posts by people you follow</h3>
+
+<div id="photos">
+  <% @photos.each do |photo| %>
+    <div class="col-md-3">
+      <%= render partial: "photos/photo", locals: { photo: photo } %>
+    </div>
+    <p>
+      <%= link_to "Show this photo", photo %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New photo", new_photo_path %>
