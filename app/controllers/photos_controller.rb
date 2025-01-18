@@ -66,6 +66,15 @@ class PhotosController < ApplicationController
     end
   end
 
+  def liked
+    @user = User.where(email: (params.fetch(:username) + "@example.com")).first
+    if @user.valid?
+      render({:template => "photos/user"})
+    else
+      redirect_to root_path, notice: "Invalid Username."
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_photo

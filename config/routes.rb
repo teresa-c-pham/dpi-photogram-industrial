@@ -11,5 +11,5 @@ Rails.application.routes.draw do
 
   # Define path routes for User
   get "/:username" => "photos#user", as: :specific_user
-  # get "/:username/feed" => "photos#feed", as: :user_feed
+  get "/:username/liked" => "photos#liked"
 end
